@@ -144,11 +144,75 @@ public class Model extends Observable {
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
 
+        // Case 1
+        if (!emptySpaceExists(board)) {
+            return false;
+        }
+
+        // Case 2
+        int size = board.size();
+        for (int i = 0; i < size; i++) {
+            // change direction
+            board.setViewingPerspective(side);
+            changed = tiltOneColumn(i) || changed;
+            board.setViewingPerspective(Side.NORTH);
+        }
+
         checkGameOver();
         if (changed) {
             setChanged();
         }
         return changed;
+    }
+
+    private boolean tiltOneColumn(int col) {
+        // return weather is change
+        int EMPTY = -1;
+        int size = board.size();
+        int prevValue = EMPTY;
+        int prevRow = EMPTY;
+        boolean changed = false;
+        // the top grid is null
+        if (board.tile(col, size - 1) == null) {
+            prevRow = size;
+        }
+        for (int i = size - 1; i >= 0; i--) {
+            Tile curr = board.tile(col, i);
+            if (curr != null) {
+                // update prev value
+                if (prevValue == EMPTY && prevRow == EMPTY) {
+                    prevValue = curr.value();
+                    prevRow = i;
+                    continue;
+                }
+                // meet the same value, move it
+                if (curr.value() == prevValue) {
+                    board.move(col, prevRow, curr);
+                    changed = true;
+                    score += prevValue * 2;
+                    prevValue = EMPTY;  // can not be merged again
+                    continue;
+                }
+                // meet another value, move it
+                if (curr.value() != prevValue) {
+                    board.move(col, prevRow - 1, curr);
+                    prevValue = curr.value();
+                    prevRow = prevRow - 1;
+                    changed = true;
+                    continue;
+                }
+            }
+        }
+        return changed;
+    }
+
+    private boolean isFullColumn(int col) {
+        for (int i = 0; i < board.size(); i++) {
+            if (board.tile(col, i) == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
