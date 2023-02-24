@@ -1,52 +1,54 @@
-public class SLList {
-    private static class IntNode {
-        public int item;
-        public IntNode next;
+import javax.net.ssl.SSLContextSpi;
 
-        public IntNode(int item, IntNode next) {
+public class SLList<T> {
+    private class Node {
+        public T item;
+        public Node next;
+
+        public Node(T item, Node next) {
             this.item = item;
             this.next = next;
+
         }
     }
 
     /* INVARIANT:  The first item (if it exists) is at sentinel.next */
-    private final IntNode sentinel;
+    private final Node sentinel;
     private int size;
-    private final int SENTINEL_VALUE = -1;
 
     /**
      * Create an empty SLList
      */
     public SLList() {
-        sentinel = new IntNode(SENTINEL_VALUE, null);
+        sentinel = new Node(null, null);
         size = 1;
     }
 
-    public SLList(int x) {
-        sentinel = new IntNode(SENTINEL_VALUE, null);
-        sentinel.next = new IntNode(x, null);
+    public SLList(T x) {
+        sentinel = new Node(null, null);
+        sentinel.next = new Node(x, null);
         size = 1;
     }
 
-    public void addFirst(int x) {
-        sentinel.next = new IntNode(x, sentinel.next);
+    public void addFirst(T x) {
+        sentinel.next = new Node(x, sentinel.next);
         size++;
     }
 
-    public void addLast(int x) {
+    public void addLast(T x) {
         addLast(sentinel, x);
         size++;
     }
 
-    private void addLast(IntNode n, int x) {
+    private void addLast(Node n, T x) {
         if (n.next == null) {
-            n.next = new IntNode(x, null);
+            n.next = new Node(x, null);
             return;
         }
         addLast(n.next, x);
     }
 
-    public int getFirst() {
+    public T getFirst() {
         return sentinel.next.item;
     }
 
@@ -55,8 +57,14 @@ public class SLList {
     }
 
     public static void main(String[] args) {
-        SLList l = new SLList();
+        SLList<Integer> l = new SLList<>();
         l.addLast(5);
+        l.addFirst(10);
         System.out.println(l.size());
+
+        SLList<String> s = new SLList<>();
+        s.addFirst("Hello");
+        s.addLast("World");
+        System.out.println(s.size());
     }
 }
