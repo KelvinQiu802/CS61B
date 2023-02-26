@@ -29,10 +29,10 @@ public class TestBuggyAList {
         AListNoResizing<Integer> L = new AListNoResizing<>();
         BuggyAList<Integer> L2 = new BuggyAList<>();
 
-        int N = 1000;
+        int N = 10000;
         for (int i = 0; i < N; i += 1) {
-            int operationNumber = StdRandom.uniform(0, 3);
-            if (operationNumber == 0) {
+            int operationNumber = StdRandom.uniform(0, 4);
+            if (operationNumber == 0 && L.size() < 1000) {
                 // addLast
                 int randVal = StdRandom.uniform(0, 100);
                 L.addLast(randVal);
@@ -42,11 +42,11 @@ public class TestBuggyAList {
                 int size = L.size();
                 int size2 = L2.size();
                 assertEquals(size, size2);
-            } else if (operationNumber == 2 && L2.size() > 0) {
+            } else if (operationNumber == 2 && L2.size() > 0 && L.size() > 0) {
                 int last = L.getLast();
                 int last2 = L2.getLast();
                 assertEquals(last, last2);
-            } else if (operationNumber == 3 && L2.size() > 0) {
+            } else if (operationNumber == 3 && L2.size() > 0 && L.size() > 0) {
                 int last = L.removeLast();
                 int last2 = L2.removeLast();
                 assertEquals(last, last2);
