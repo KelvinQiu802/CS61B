@@ -103,8 +103,8 @@ public class ArrayDeque<T> implements IDeque<T> {
         if (size >= 16 && size / (double) items.length < 0.25) {
             resize(size * 2);
         }
-        T oldFirst = items[nextFirst + 1];
         nextFirst = nextFirst == items.length - 1 ? 0 : nextFirst + 1;
+        T oldFirst = items[nextFirst];
         size--;
         return oldFirst;
     }
