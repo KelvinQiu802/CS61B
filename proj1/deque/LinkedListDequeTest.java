@@ -2,6 +2,8 @@ package deque;
 
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 
@@ -146,5 +148,42 @@ public class LinkedListDequeTest {
         for (double i = 999999; i > 500000; i--) {
             assertEquals("Should have the same value", i, (double) lld1.removeLast(), 0.0);
         }
+    }
+
+    @Test
+    public void iteratorTest() {
+        LinkedListDeque<Integer> l = new LinkedListDeque<>();
+        for (int i = 0; i < 100; i++) {
+            l.addLast(i);
+        }
+
+        Iterator<Integer> it = l.iterator();
+
+        for (int i = 0; i < 100; i++) {
+            assertEquals(it.next(), l.get(i));
+        }
+        assertFalse(it.hasNext());
+    }
+
+    @Test
+    public void equalsTest() {
+        LinkedListDeque<Integer> l = new LinkedListDeque<>();
+        LinkedListDeque<Integer> l2 = new LinkedListDeque<>();
+        for (int i = 0; i < 100; i++) {
+            l.addLast(i);
+            l2.addLast(i);
+        }
+        assertEquals(l, l2);
+    }
+
+    @Test
+    public void unequalsTest() {
+        LinkedListDeque<Integer> l = new LinkedListDeque<>();
+        LinkedListDeque<Integer> l2 = new LinkedListDeque<>();
+        for (int i = 0; i < 100; i++) {
+            l.addLast(i);
+        }
+        l2.addLast(100);
+        assertNotEquals(l, l2);
     }
 }
