@@ -99,6 +99,7 @@ public class ArrayDeque<T> implements IDeque<T> {
 
     @Override
     public T removeFirst() {
+        if (size == 0) return null;
         if (size >= 16 && size / (double) items.length < 0.25) {
             resize(size * 2);
         }
@@ -110,6 +111,7 @@ public class ArrayDeque<T> implements IDeque<T> {
 
     @Override
     public T removeLast() {
+        if (size == 0) return null;
         if (size >= 16 && size / (double) items.length < 0.25) {
             resize(size * 2);
         }
