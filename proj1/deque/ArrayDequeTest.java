@@ -77,4 +77,17 @@ public class ArrayDequeTest {
         }
         assertFalse(it.hasNext());
     }
+
+    @Test
+    public void equalsTest() {
+        ArrayDeque<Integer> d = new ArrayDeque<>();
+        ArrayDeque<Integer> d2 = new ArrayDeque<>();
+        for (int i = 0; i < 10; i++) {
+            d.addFirst(i);
+            d2.addFirst(i);
+        }
+        assertEquals(d, d2);
+        d.removeLast();
+        assertNotEquals(d, d2);
+    }
 }

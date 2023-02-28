@@ -113,8 +113,8 @@ public class ArrayDeque<T> implements IDeque<T> {
         if (size >= 16 && size / (double) items.length < 0.25) {
             resize(size * 2);
         }
-        T oldLast = items[nextLast - 1];
-        nextLast = nextLast == 1 ? items.length - 1 : nextLast - 1;
+        nextLast = nextLast == 0 ? items.length - 1 : nextLast - 1;
+        T oldLast = items[nextLast];
         size--;
         return oldLast;
     }
@@ -124,5 +124,17 @@ public class ArrayDeque<T> implements IDeque<T> {
         int i = nextFirst + 1 + index;
         i = i >= items.length ? i - items.length : i;
         return items[i];
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof ArrayDeque other) {
+            if (this.size != other.size) return false;
+            for (int i = 0; i < this.size; i++) {
+                if (!this.get(i).equals(other.get(i))) return false;
+            }
+        }
+        return true;
     }
 }
