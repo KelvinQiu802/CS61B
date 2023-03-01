@@ -131,10 +131,10 @@ public class ArrayDeque<T> implements IDeque<T> {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof ArrayDeque other) {
-            if (this.size != other.size) return false;
+        if (obj instanceof ArrayDeque) {
+            if (this.size != ((ArrayDeque<?>) obj).size) return false;
             for (int i = 0; i < this.size; i++) {
-                if (!this.get(i).equals(other.get(i))) return false;
+                if (!this.get(i).equals(((ArrayDeque<?>) obj).get(i))) return false;
             }
         }
         return true;

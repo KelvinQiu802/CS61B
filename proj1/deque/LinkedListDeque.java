@@ -144,10 +144,10 @@ public class LinkedListDeque<T> implements IDeque<T> {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof LinkedListDeque other) {
-            if (this.size != other.size) return false;
+        if (obj instanceof LinkedListDeque) {
+            if (this.size != ((LinkedListDeque<?>) obj).size) return false;
             for (int i = 0; i < this.size; i++) {
-                if (!this.get(i).equals(other.get(i))) return false;
+                if (!this.get(i).equals(((LinkedListDeque<?>) obj).get(i))) return false;
             }
         }
         return true;
