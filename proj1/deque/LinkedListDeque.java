@@ -131,6 +131,9 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }
@@ -143,6 +146,8 @@ public class LinkedListDeque<T> implements Deque<T> {
                     return false;
                 }
             }
+        } else {
+            return false;
         }
         return true;
     }

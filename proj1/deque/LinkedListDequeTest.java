@@ -173,5 +173,7 @@ public class LinkedListDequeTest {
         }
         l2.addLast(100);
         assertNotEquals(l, l2);
+        assertNotEquals(l, null);
+        assertNotEquals(l, "Hello");
     }
 }
