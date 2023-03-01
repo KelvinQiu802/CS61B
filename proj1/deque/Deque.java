@@ -1,11 +1,9 @@
 package deque;
 
-public interface IDeque<T> {
+public interface Deque<T> {
     void addFirst(T item);
 
     void addLast(T item);
-
-    boolean isEmpty();
 
     int size();
 
@@ -18,4 +16,8 @@ public interface IDeque<T> {
     T get(int index);
 
     boolean equals(Object o);
+
+    default boolean isEmpty() {
+        return size() == 0;
+    }
 }

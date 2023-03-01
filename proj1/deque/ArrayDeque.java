@@ -3,7 +3,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements IDeque<T> {
+public class ArrayDeque<T> implements Deque<T> {
     private class DequeIterator implements Iterator<T> {
         private int index;
 
@@ -71,11 +71,6 @@ public class ArrayDeque<T> implements IDeque<T> {
         items[nextLast] = item;
         nextLast = nextLast + 1 == items.length ? 0 : nextLast + 1;
         size++;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     @Override
