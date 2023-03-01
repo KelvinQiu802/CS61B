@@ -97,8 +97,8 @@ public class ArrayDeque<T> implements Deque<T> {
         if (size == 0) {
             return null;
         }
-        if (size >= 16 && size / (double) items.length < 0.25) {
-            resize(size * 2);
+        if (size >= 16 && (size / (double) items.length <= 0.25)) {
+            resize(size + 1);
         }
         nextFirst = nextFirst == items.length - 1 ? 0 : nextFirst + 1;
         T oldFirst = items[nextFirst];
@@ -111,8 +111,8 @@ public class ArrayDeque<T> implements Deque<T> {
         if (size == 0) {
             return null;
         }
-        if (size >= 16 && size / (double) items.length < 0.25) {
-            resize(size * 2);
+        if (size >= 16 && (size / (double) items.length <= 0.25)) {
+            resize(size + 1);
         }
         nextLast = nextLast == 0 ? items.length - 1 : nextLast - 1;
         T oldLast = items[nextLast];
