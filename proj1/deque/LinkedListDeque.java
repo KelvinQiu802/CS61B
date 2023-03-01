@@ -8,7 +8,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         private Node<T> next;
         private Node<T> prev;
 
-        public Node(T item) {
+        Node(T item) {
             this.item = item;
             next = null;
             prev = null;
@@ -18,7 +18,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     private class DequeIterator implements Iterator<T> {
         private Node<T> curr;
 
-        public DequeIterator() {
+        DequeIterator() {
             curr = sentFront.next;
         }
 
