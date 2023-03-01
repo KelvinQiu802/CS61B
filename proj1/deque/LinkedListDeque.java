@@ -3,7 +3,7 @@ package deque;
 import java.util.Iterator;
 
 public class LinkedListDeque<T> implements IDeque<T> {
-    public static class Node<T> {
+    private static class Node<T> {
         private T item;
         private Node<T> next;
         private Node<T> prev;
@@ -100,7 +100,9 @@ public class LinkedListDeque<T> implements IDeque<T> {
 
     @Override
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
 
         Node<T> first = sentFront.next;
         sentFront.next = first.next;
@@ -113,7 +115,9 @@ public class LinkedListDeque<T> implements IDeque<T> {
 
     @Override
     public T removeLast() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
 
         Node<T> last = sentBack.prev;
         sentBack.prev = last.prev;
@@ -126,7 +130,9 @@ public class LinkedListDeque<T> implements IDeque<T> {
 
     @Override
     public T get(int index) {
-        if (index > size) return null;
+        if (index > size) {
+            return null;
+        }
 
         Node<T> n = sentFront.next;
         for (int i = 0; i < index; i++) {
@@ -141,11 +147,17 @@ public class LinkedListDeque<T> implements IDeque<T> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
         if (obj instanceof LinkedListDeque) {
-            if (this.size != ((LinkedListDeque<?>) obj).size) return false;
+            if (this.size != ((LinkedListDeque<?>) obj).size) {
+                return false;
+            }
             for (int i = 0; i < this.size; i++) {
-                if (!this.get(i).equals(((LinkedListDeque<?>) obj).get(i))) return false;
+                if (!this.get(i).equals(((LinkedListDeque<?>) obj).get(i))) {
+                    return false;
+                }
             }
         }
         return true;
@@ -156,8 +168,12 @@ public class LinkedListDeque<T> implements IDeque<T> {
     }
 
     private T getRecursive(int index, Node<T> n) {
-        if (index == 0) return n.item;
-        if (n.item == null) return null;
+        if (index == 0) {
+            return n.item;
+        }
+        if (n.item == null) {
+            return null;
+        }
         return getRecursive(index - 1, n.next);
     }
 }

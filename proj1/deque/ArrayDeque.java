@@ -99,7 +99,9 @@ public class ArrayDeque<T> implements IDeque<T> {
 
     @Override
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         if (size >= 16 && size / (double) items.length < 0.25) {
             resize(size * 2);
         }
@@ -111,7 +113,9 @@ public class ArrayDeque<T> implements IDeque<T> {
 
     @Override
     public T removeLast() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         if (size >= 16 && size / (double) items.length < 0.25) {
             resize(size * 2);
         }
@@ -130,11 +134,17 @@ public class ArrayDeque<T> implements IDeque<T> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
         if (obj instanceof ArrayDeque) {
-            if (this.size != ((ArrayDeque<?>) obj).size) return false;
+            if (this.size != ((ArrayDeque<?>) obj).size) {
+                return false;
+            }
             for (int i = 0; i < this.size; i++) {
-                if (!this.get(i).equals(((ArrayDeque<?>) obj).get(i))) return false;
+                if (!this.get(i).equals(((ArrayDeque<?>) obj).get(i))) {
+                    return false;
+                }
             }
         }
         return true;
