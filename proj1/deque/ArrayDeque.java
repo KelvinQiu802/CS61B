@@ -3,7 +3,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T> {
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private class DequeIterator implements Iterator<T> {
         private int index;
 
@@ -135,12 +135,12 @@ public class ArrayDeque<T> implements Deque<T> {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof ArrayDeque) {
-            if (this.size != ((ArrayDeque<?>) obj).size) {
+        if (obj instanceof Deque) {
+            if (this.size != ((Deque<?>) obj).size()) {
                 return false;
             }
             for (int i = 0; i < this.size; i++) {
-                if (!this.get(i).equals(((ArrayDeque<?>) obj).get(i))) {
+                if (!this.get(i).equals(((Deque<?>) obj).get(i))) {
                     return false;
                 }
             }
