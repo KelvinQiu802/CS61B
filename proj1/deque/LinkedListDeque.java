@@ -46,17 +46,6 @@ public class LinkedListDeque<T> implements Deque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T item) {
-        sentFront = new Node<>(null);
-        sentBack = new Node<>(null);
-        Node<T> n = new Node<>(item);
-        sentFront.next = n;
-        n.prev = sentFront;
-        n.next = sentBack;
-        sentBack.prev = n;
-        size = 1;
-    }
-
     @Override
     public void addFirst(T item) {
         Node<T> n = new Node<>(item);

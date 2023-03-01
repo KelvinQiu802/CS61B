@@ -56,18 +56,6 @@ public class LinkedListDequeTest {
     }
 
     @Test
-    public void testAddWithNonEmptyList() {
-        LinkedListDeque<Integer> l = new LinkedListDeque<>(100);
-        assertEquals(1, l.size());
-
-        l.addFirst(20);
-        assertEquals(2, l.size());
-
-        l.addLast(30);
-        assertEquals(3, l.size());
-    }
-
-    @Test
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
     public void addRemoveTest() {
 
