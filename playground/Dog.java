@@ -28,6 +28,14 @@ public class Dog implements Comparable<Dog> {
         return new NameComparator();
     }
 
+    @Override
+    public boolean equals(Object otherObj) {
+        if (this == otherObj) return true;
+        if (otherObj == null) return false;
+        if (!(otherObj instanceof Dog other)) return false;
+        return name.equals(other.name) && size == other.size;
+    }
+
     public static void main(String[] args) {
         // use comparable
         Dog[] dogs = new Dog[]{new Dog("Kelvin", 10),
