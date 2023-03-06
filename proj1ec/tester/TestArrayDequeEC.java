@@ -19,6 +19,7 @@ public class TestArrayDequeEC {
 
     @Test
     public void randomTest() {
+        StringBuilder trace = new StringBuilder();
         while (true) {
             int randNum = StdRandom.uniform(0, 4);
             switch (randNum) {
@@ -26,22 +27,25 @@ public class TestArrayDequeEC {
                     int num = StdRandom.uniform(1000);
                     stu.addFirst(num);
                     sol.addFirst(num);
-                    assertEquals(stu.size(), sol.size());
+                    trace.append(String.format("addFirst(%d)\n", num));
+                    assertEquals(trace.toString(), stu.size(), sol.size());
                     break;
                 }
                 case 1: {
                     int num = StdRandom.uniform(1000);
                     stu.addLast(num);
                     sol.addLast(num);
-                    assertEquals(stu.size(), sol.size());
+                    trace.append(String.format("addLast(%d)\n", num));
+                    assertEquals(trace.toString(), stu.size(), sol.size());
                     break;
                 }
                 case 2: {
                     if (stu.size() != 0 && sol.size() != 0) {
                         Integer a = stu.removeFirst();
                         Integer b = sol.removeFirst();
-                        assertEquals(a, b);
-                        assertEquals(stu.size(), sol.size());
+                        trace.append("removeFirst()\n");
+                        assertEquals(trace.toString(), a, b);
+                        assertEquals(trace.toString(), stu.size(), sol.size());
                     }
                     break;
                 }
@@ -49,8 +53,9 @@ public class TestArrayDequeEC {
                     if (stu.size() != 0 && sol.size() != 0) {
                         Integer a = stu.removeLast();
                         Integer b = sol.removeLast();
-                        assertEquals(a, b);
-                        assertEquals(stu.size(), sol.size());
+                        trace.append("removeLast()\n");
+                        assertEquals(trace.toString(), a, b);
+                        assertEquals(trace.toString(), stu.size(), sol.size());
                     }
                     break;
                 }
