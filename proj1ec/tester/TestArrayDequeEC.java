@@ -39,7 +39,7 @@ public class TestArrayDequeEC {
                 case 2: {
                     if (stu.size() != 0 && sol.size() != 0) {
                         Integer a = stu.removeFirst();
-                        Integer b = sol.removeLast();
+                        Integer b = sol.removeFirst();
                         assertEquals(a, b);
                         assertEquals(stu.size(), sol.size());
                     }
